@@ -43,13 +43,13 @@ class UserResource extends Resource
                     ->searchable()
             ]);
     }
-    
-    public static function authorization(\Closure $getAbilities) : void
+
+    public static function authorization(\Closure $getAbilities): void
     {
         $getAbilities()->can('access users menu');
     }
-    
-    
+
+
     public static function table(Table $table): Table
     {
         return $table
@@ -60,7 +60,7 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('password')->label('password')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('role')->label('role')
+                Tables\Columns\TextColumn::make('roles.name')->label('role')
                     ->searchable(),
             ])
             ->filters([
@@ -78,14 +78,14 @@ class UserResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -93,9 +93,9 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
-    }  
-    
-   
-    
+    }
+
+
+
 
 }
